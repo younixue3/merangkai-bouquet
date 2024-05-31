@@ -1,9 +1,8 @@
-@extends('component.layout.master')
+@extends('component.layout.dashboard.master')
 @section('title', 'Product')
 @section('content')
-    <div class="pt-20 px-10">
         <div class="bg-white border rounded-lg p-5">
-            <a href="{{route('product.create')}}" class="btn btn-primary">Tambah Produk</a>
+            <a href="{{route('dashboard.product.create')}}" class="btn btn-primary">Tambah Produk</a>
             <table class="w-full table-auto text-sm text-center mt-10">
                 <thead class="h-10">
                 <tr>
@@ -32,8 +31,8 @@
                             <img class="h-20 object-cover object-center m-auto" src='{{asset("storage/assets/product/{$value->image}")}}' />
                         </td>
                         <td class="py-3">
-                            <a class="btn btn-warning" href="{{route('product.edit', $value->id)}}">Detail</a>
-                            <a class="btn btn-danger" href="{{route('product.destroy', $value->id)}}">Delete</a>
+                            <a class="btn btn-warning" href="{{route('dashboard.product.edit', $value->id)}}">Detail</a>
+                            <a class="btn btn-danger" href="{{route('dashboard.product.destroy', $value->id)}}">Delete</a>
                         </td>
                     </tr>
                 @empty
@@ -42,5 +41,4 @@
                 </tbody>
             </table>
         </div>
-    </div>
 @endsection

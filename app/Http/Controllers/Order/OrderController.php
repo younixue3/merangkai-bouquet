@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Product;
+namespace App\Http\Controllers\Order;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Order\DataOrderController;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class OrderController extends Controller
 {
 
-    public function __construct(DataProductController $data)
+    public function __construct(DataOrderController $data)
     {
         $this->data = $data;
     }
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $data = $this->data->get_data();
-        return view('dashboard.product.index', $data);
+        return view('dashboard.order.index', $data);
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('dashboard.product.create');
+        //
     }
 
     /**
@@ -35,13 +35,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $request->validate([
-            'fileupload' => ['required', 'mimes:jpeg,jpg,webp,png'],
-        ]);
-
         $data = $this->data->store_data($request);
 
-        return redirect(route('dashboard.product.index'))->with('success', 'Insert Data Successfully');
+        return redirect()->back()->with('success', 'Insert Data Successfully');
     }
 
     /**
@@ -50,7 +46,7 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $data = $this->data->show_data($id);
-        return view('product.show', $data);
+        return view('order.show', $data);
     }
 
     /**
@@ -59,7 +55,7 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $data = $this->data->show_data($id);
-        return view('dashboard.product.edit', $data);
+        return view('dashboard.order.edit', $data);
     }
 
     /**
@@ -68,7 +64,7 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $this->data->update_data($request, $id);
-        return redirect(route('dashboard.product.index'))->with('success', 'Update Data Successfully');
+        return redirect(route('dashboard.order.index'))->with('success', 'Update Data Successfully');
     }
 
     /**

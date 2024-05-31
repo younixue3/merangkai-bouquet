@@ -5,7 +5,7 @@
         <div class="flex relative h-[35rem] w-full">
             <img class="h-full w-full object-cover object-top" src="{{asset('assets/img/2148442453.jpg')}}" />
             <div class="absolute flex w-full h-full">
-                <div class="m-auto ml-52">
+                <div class="m-auto md:ml-52">
                     <h1 class="text-6xl font-extrabold text-rose-900">
                         <div class="font-dancing-script text-5xl text-rose-600 font-bold">Wedding</div>
                         Beautiful <br>in White
@@ -87,9 +87,9 @@
             </div>
             <div class="grid grid-cols-5 gap-5 p-10 font-philosopher">
                 @forelse($product as $key => $value)
-                <a class="group" href="#">
+                <a class="group" href="{{route('product.show', $value->id)}}">
                     <div class="bg-white flex border border-rose-200 rounded-lg p-4">
-                        <div>
+                        <div class="w-full">
                             <img class="h-52 rounded-md w-full object-cover object-center" src="{{asset("storage/assets/product/{$value->image}")}}" />
                             <div class="mt-5 group-hover:text-rose-700 transition">
                                 <h5 class="font-bold">{{$value->name}}</h5>

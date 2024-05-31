@@ -13,10 +13,21 @@
                         <a href="{{route('home')}}"
                            class="text-rose-500 hover:btn-primary transition rounded-md px-3 py-2 font-medium"
                            aria-current="page">Beranda</a>
-                        <a href="{{route('product.index')}}"
-                           class="text-rose-500 hover:btn-primary transition rounded-md px-3 py-2 font-medium">Produk</a>
-                        <a href="#"
+                        <a href="{{route('about')}}"
+                           class="text-rose-500 hover:btn-primary transition rounded-md px-3 py-2 font-medium">Tentang</a>
+                        <a href="{{route('contact')}}"
                            class="text-rose-500 hover:btn-primary transition rounded-md px-3 py-2 font-medium">Kontak</a>
+                        <a href="{{route('cart')}}"
+                           class="text-rose-500 hover:btn-primary transition rounded-md px-3 py-2 font-medium">Keranjang</a>
+                        @if(auth()->user())
+                            @if(auth()->user()->role === 'admin')
+                                <a href="{{route('dashboard.index')}}"
+                                   class="btn-primary transition rounded-md px-3 py-2 font-medium">Dashboard</a>
+                            @endif
+                        @else
+                            <a href="{{route('login')}}"
+                               class="btn-primary transition rounded-md px-3 py-2 font-medium">Login</a>
+                        @endif
                     </div>
                 </div>
             </div>
