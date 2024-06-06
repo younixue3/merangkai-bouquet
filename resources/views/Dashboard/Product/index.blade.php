@@ -32,7 +32,11 @@
                         </td>
                         <td class="py-3">
                             <a class="btn btn-warning" href="{{route('dashboard.product.edit', $value->id)}}">Detail</a>
-                            <a class="btn btn-danger" href="{{route('dashboard.product.destroy', $value->id)}}">Delete</a>
+                            <form method="POST" action="{{route('dashboard.product.destroy', $value->id)}}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" href="">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @empty

@@ -25,7 +25,11 @@
                     <td>Rp. {{$value->total_price}}</td>
                     <td class="py-3">
                         <a class="btn btn-warning" href="{{route('dashboard.order.edit', $value->id)}}">Detail</a>
-                        <a class="btn btn-danger" href="{{route('dashboard.product.destroy', $value->id)}}">Delete</a>
+                        <form method="POST" action="{{route('dashboard.order.destroy', $value->id)}}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" href="">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @empty

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
             $table->integer('pcs');
             $table->enum('status', ['pending', 'processing', 'completed', 'cancelled'])->default('pending');
             $table->integer('total_price');
