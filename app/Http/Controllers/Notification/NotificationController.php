@@ -7,12 +7,19 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
+
+    public function __construct(DataNotificationController $data)
+    {
+        $this->data = $data;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data = $this->data->get_data();
+        return view('dashboard.notification.index', $data);
     }
 
     /**

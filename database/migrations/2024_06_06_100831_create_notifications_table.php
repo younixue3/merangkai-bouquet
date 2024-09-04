@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('sender_id');
+            $table->foreign('sender_id')->references('id')->on('users')->onDelete('no action');
+            $table->unsignedBigInteger('reciever_id')->nullable();
+            $table->foreign('reciever_id')->references('id')->on('users')->onDelete('no action');
+            $table->text('message');
+            $table->enum('status', [1,2])->default(1);
             $table->timestamps();
         });
     }

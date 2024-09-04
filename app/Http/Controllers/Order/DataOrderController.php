@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Order;
 
 use App\Helper\getFilename;
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -33,6 +34,11 @@ class DataOrderController extends Controller
             'total_price' => $product->price * $request->pcs,
         ]);
 
+        Notification::create([
+            'sender_id' => auth()->user()->id,
+            'message' => 'Order created',
+        ]);
+
         return $order;
     }
 
@@ -51,6 +57,18 @@ class DataOrderController extends Controller
         $order->update([
             'status' => $request->status,
         ]);
+        if ($request->status == 'completed') {
+            Notification::create([
+                'sender_id' => auth()->user()->id,
+                'message' => 'Pesanan telah diterima',
+            ]);
+        } else {
+            Notification::create([
+                'sender_id' => auth()->user()->id,
+                'message' => 'Pesanan telah ditolak',
+            ]);
+        }
+
 
         return $order;
     }

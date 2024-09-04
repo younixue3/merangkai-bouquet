@@ -25,6 +25,7 @@ Route::name('dashboard.')->prefix('dashboard')->middleware(['auth', 'isAdmin'])-
     Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('index');
     Route::resource('/product', \App\Http\Controllers\Product\ProductController::class);
     Route::resource('/order', \App\Http\Controllers\Order\OrderController::class);
+    Route::resource('/notification', \App\Http\Controllers\Notification\NotificationController::class);
 });
 
 Route::get('/logout', function () {
